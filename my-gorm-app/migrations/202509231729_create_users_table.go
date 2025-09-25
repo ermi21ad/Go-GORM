@@ -4,7 +4,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func MigrateUp(db *gorm.DB) {
+func MigrateUpusers(db *gorm.DB) {
 	err := db.Exec(`CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         name VARCHAR(100),
@@ -16,7 +16,7 @@ func MigrateUp(db *gorm.DB) {
 	}
 }
 
-func MigrateDown(db *gorm.DB) {
+func MigrateDownusers(db *gorm.DB) {
 	err := db.Exec(`DROP TABLE IF EXISTS users`).Error
 	if err != nil {
 		panic("Failed to drop users table: " + err.Error())

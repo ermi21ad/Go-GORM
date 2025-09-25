@@ -21,11 +21,8 @@ func main() {
 		panic("Failed to ping database: " + err.Error())
 	}
 
-	// Apply migrations (if needed)
-	migrations.MigrateUp(db)
+	// migrations.PopulateUsers(db)
+	migrations.PopulatePosts(db)
 
-	// Populate the users table
-	migrations.PopulateUsers(db)
-
-	fmt.Println("Database connected, migrations applied, and users populated successfully")
+	fmt.Println("Database connected, migrations applied, and populated successfully")
 }

@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
-	"my-gorm-app/migrations"
-
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"my-gorm-app/Model"
 )
 
 func main() {
@@ -14,15 +13,14 @@ func main() {
 	if err != nil {
 		panic("Failed to connect to database")
 	}
-	sqlDB, _ := db.DB()
-	err = sqlDB.Ping()
+	err = db.Transaction(func(tx *gorm.DB) error {
+		if err := tx.Create(&Model.User{Name: "eyob", Email: "eyob@example.com"}).Error; err != nil {
+			return err
+		}
+		return nil
+	})
 	if err != nil {
-		panic("Failed to ping database")
+		panic("Transaction failed")
 	}
-	migrations.MigrateDownposts(db)
-	migrations.MigrateUpposts(db)
-	migrations.MigrateDownusers(db)
-	migrations.MigrateUpusers(db)
-
-	fmt.Println("Database connected and migrations applied successfully")
+	fmt.Println("Transaction completed!")
 }

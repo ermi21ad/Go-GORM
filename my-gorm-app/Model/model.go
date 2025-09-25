@@ -5,8 +5,8 @@ type User struct {
 	Name  string `gorm:"type:varchar(100)"`
 	Email string `gorm:"type:varchar(100);unique"`
 }
-type Product struct {
-	ID    uint   `gorm:"primaryKey"`
-	Name  string `gorm:"type:varchar(100)"`
-	Price float64
+type Post struct {
+	ID     uint
+	Title  string `gorm:"type:varchar(100)"`
+	UserID uint
 }
