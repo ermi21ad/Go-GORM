@@ -1,9 +1,10 @@
 package Model
 
 type User struct {
-	ID    uint   `gorm:"primartKey`
-	Name  string `gorm:"type:varchar(100)"`
-	Email string `gorm:"type:varchar(100);unique"`
+	ID       uint   `gorm:"primartKey`
+	Name     string `gorm:"type:varchar(100)"`
+	Email    string `gorm:"type:varchar(100);unique"`
+	Password string `gorm:"type:varchar(100)"`
 }
 type Post struct {
 	ID     uint

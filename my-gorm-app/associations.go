@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"my-gorm-app/Model"
 )
 
 func main() {
@@ -14,7 +13,7 @@ func main() {
 		panic("Failed to connect to database")
 	}
 	var user User
-	db.Preload("Posts").First(&user, 1)
+	db.Preload("Posts").First(&user, 8)
 	fmt.Println("User:", user.Name, "has", len(user.Posts), "posts")
 }
 

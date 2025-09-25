@@ -14,7 +14,13 @@ func main() {
 		panic("Failed to connect to database")
 	}
 	err = db.Transaction(func(tx *gorm.DB) error {
-		if err := tx.Create(&Model.User{Name: "eyob", Email: "eyob@example.com"}).Error; err != nil {
+		if err := tx.Create(&Model.User{Name: "Habtu", Email: "Habtu@example.com"}).Error; err != nil {
+			return err
+		}
+		return nil
+	})
+	err = db.Transaction(func(tx *gorm.DB) error {
+		if err := tx.Create(&Model.Post{Title: "eyob", UserID: 8}).Error; err != nil {
 			return err
 		}
 		return nil
