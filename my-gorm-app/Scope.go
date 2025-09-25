@@ -24,7 +24,7 @@ func Scope() {
 	var usersEmail []Model.User
 	db.Scopes(withEmail("%example.com")).Find(&usersEmail)
 	for _, user := range usersEmail {
-		fmt.Printf("Scoped user: %s (Email: %s)\n", user.Email)
+		fmt.Printf("Scoped user: %s (Email: %s)\n", user.Name, user.Email)
 	}
 }
 func withEmail(newpattern string) func(*gorm.DB) *gorm.DB {
